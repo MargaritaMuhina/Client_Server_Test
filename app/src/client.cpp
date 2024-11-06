@@ -1,12 +1,10 @@
 #include "Socket.h"
-
+#include "Client.h"
 #include <iostream>
 #include <string>
 
-
 int main() {
     Address address(DEFAULT_PORT, DEFAULT_HOST);
-
     Client client(address);
 
     std::cout << "Enter a message: ";
@@ -17,12 +15,12 @@ int main() {
         try {
             client.Send(message);
             std::cout << "Server response: " << client.Receive() << std::endl;
-        }catch (const std::exception& e) {
+        } catch (const std::exception& e) {
             std::cerr << "Error sending message: " << e.what() << std::endl;
         }
-        
     } else {
         std::cerr << "You did not enter a message." << std::endl;
     }
+
     return 0;
 }

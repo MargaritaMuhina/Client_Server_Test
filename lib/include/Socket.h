@@ -30,6 +30,8 @@ public:
         }
     }
 
+    Socket(int fd) : fd(fd) {}
+
     ~Socket() {
         if (fd != -1) {
             close(fd);
@@ -64,40 +66,5 @@ private:
 };
 
 
-class Client {
-public:
-    Client(const Address& address) : socket(AF_INET, SOCK_STREAM, 0) {
-        socket.Connect(address);
-    }
-
-    // Method to send a message to the server
-    void Send(const std::string& message) {
-        socket.Send(message);
-    }
-
-    // Method to receive a response from the server
-    std::string Receive() {
-        return socket.Receive();
-    }
-
-private:
-    Socket socket;
-};
 
 
-class Server {
-public:
-
-    Server(const Address& address, int backlog = 5) : socket(AF_INET, SOCK_STREAM, 0) {
-        socket.Bind(address);
-        socket.Listen(backlog);
-    }
-  
-    Client Accept_client() {
-        int new_fd = socket.Accept();
-        // Pass the new file descriptor to the client constructor
-        return Client(new_fd);
-    }
-private:
-    Socket socket;
-};

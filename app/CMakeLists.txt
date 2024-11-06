@@ -11,14 +11,21 @@ set(CLSERV_HEADERS_LIST ${CLSERV_INCLUDE_DIR})
 
 include_directories(${CLSERV_HEADERS_LIST})
 
-add_executable(${PROJECT_NAME} ${CLSERV_SOURCE})
+add_executable(client ${CLSERV_SOURCE_DIR}/client.cpp)
+add_executable(server ${CLSERV_SOURCE_DIR}/server.cpp)
 
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
-target_compile_options(${PROJECT_NAME} PRIVATE "-Wall")
 
-target_link_libraries (${PROJECT_NAME} PRIVATE Socket)
+target_link_libraries(client PRIVATE Socket)
+target_link_libraries(server PRIVATE Socket)
 
-set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 
-install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME} DESTINATION bin)
-install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-${PROJECT_VERSION} DESTINATION bin)
+target_compile_features(client PUBLIC cxx_std_17)
+target_compile_features(server PUBLIC cxx_std_17)
+target_compile_options(client PRIVATE "-Wall")
+target_compile_options(server PRIVATE "-Wall")
+
+install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/client DESTINATION bin)
+install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/server DESTINATION bin)
+
+
+
