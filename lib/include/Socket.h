@@ -29,7 +29,7 @@ public:
             throw std::runtime_error("Socket creation failed: " + std::string(strerror(errno)));
         }
     }
-
+    // Constructor for using an existing socket descriptor
     Socket(int fd) : fd(fd) {}
 
     ~Socket() {
