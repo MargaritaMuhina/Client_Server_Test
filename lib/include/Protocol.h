@@ -17,11 +17,12 @@ public:
         GET_POWER,              // Get the current power from the server
         RAISE_EMERGENCY,        // Raise an emergency on the server
         CLEAR_EMERGENCY,        // Clear an emergency on the server
-        GET_EMERGENCIES         // Get a list of raised emergencies       
+        GET_EMERGENCIES,        // Get a list of raised emergencies 
+        EXIT                    // Close server and client
     };
 
     struct Message {
-        Command command;
+        Command command; // The command type
         std::vector<uint8_t> data;
     };
 

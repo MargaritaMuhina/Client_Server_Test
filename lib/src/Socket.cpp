@@ -1,7 +1,5 @@
 #include "Socket.h"
 
-
-
 void Socket::Connect(const Address& address) {
     struct sockaddr_in addr = {0};
     addr.sin_family = AF_INET;

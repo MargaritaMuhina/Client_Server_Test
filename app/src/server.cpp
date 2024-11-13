@@ -18,7 +18,9 @@ int main() {
             server.Accept_client();  
         } catch (const std::exception& e) {
             std::cerr << "Error during communication: " << e.what() << std::endl;
+            break;
         }
     }
+    std::cout << "Server exiting..." << std::endl;
     return 0;
 }
