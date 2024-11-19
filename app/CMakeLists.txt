@@ -15,8 +15,8 @@ add_executable(client ${CLSERV_SOURCE_DIR}/client.cpp)
 add_executable(server ${CLSERV_SOURCE_DIR}/server.cpp)
 
 
-target_link_libraries(client PRIVATE Socket)
-target_link_libraries(server PRIVATE Socket)
+target_link_libraries(client PRIVATE transport.socket)
+target_link_libraries(server PRIVATE transport.socket)
 
 
 target_compile_features(client PUBLIC cxx_std_17)

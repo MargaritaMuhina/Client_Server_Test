@@ -101,6 +101,20 @@ public:
         close(new_fd);
     }
 
+    void Run() {
+    // Enter an infinite loop to continuously accept client connections
+        std::cout << "Server started, waiting for connections..." << std::endl;
+        while (true) {
+            try {
+                // Accept a client connection and process its request
+                Accept_client();
+            }catch(const std::exception& e) {
+                std::cerr << "Error during communication: " << e.what() << std::endl;
+                break;
+            }
+        }
+    }
+
 private:
     Socket socket;  // The server's listening socket
     float current_frequency = 50.0f;  // The current frequency value (default 50.0)
